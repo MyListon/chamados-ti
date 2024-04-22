@@ -1,17 +1,14 @@
 package com.soulcode.chamadosti.controllers;
 
-import com.soulcode.chamadosti.repositories.TechnicianRepository;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@RestController
-@RequestMapping("/tecnicos")
+@Controller
 public class TechnicianController {
-    private final TechnicianRepository technicianRepository;
 
-    public TechnicianController(TechnicianRepository technicianRepository) {
-        this.technicianRepository = technicianRepository;
+    @GetMapping("/login-tecnico")
+    public String login() {
+        return "login-tecnico";
     }
 
-    // Métodos para manipulação de técnicos
 }
