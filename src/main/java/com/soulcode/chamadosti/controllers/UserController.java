@@ -1,24 +1,33 @@
 package com.soulcode.chamadosti.controllers;
 
-import com.soulcode.chamadosti.models.Usuario;
-import com.soulcode.chamadosti.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
-@RestController
+@Controller
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepository;
-    @RequestMapping(value = "/usuarios", method = RequestMethod.GET)
-
-    public Usuario save() {
-        Usuario u = new Usuario();
-        u.setNome("");
-        this.userRepository = userRepository;
+    @GetMapping("/login-usuario")
+    public String login() {
+        return "login-usuario";
     }
 
-    // Métodos para manipulação de usuários
+    @PostMapping("/autenticar-usuario")
+    public String autenticarUsuario(String username, String password) {
+        if ("root".equals(username) && "root".equals(password)) {
+            return "redirect:/tela-usuario";
+        } else {
+            return "redirect:/usuario";
+        }
+    }
+
+    @GetMapping("/tela-usuario")
+    public String telaUsuario() {
+        return "tela-usuario";
+    }
+
+    @GetMapping("/criar-chamado")
+    public String cadastrarChamado() {
+        return "criar-chamado";
+    }
 }
