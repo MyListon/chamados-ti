@@ -17,6 +17,8 @@ public class Chamado {
     @Column(length=50, nullable=false)
     private String descricao;
     @Column(length=50, nullable=false)
+    private String setor;
+    @Column(length=50, nullable=false)
     private String prioridade;
     @Column(length=50, nullable=false)
     private LocalDateTime dataInicio;
@@ -39,6 +41,14 @@ public class Chamado {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getSetor() {
+        return setor;
+    }
+
+    public void setSetor(String setor) {
+        this.setor = setor;
     }
 
     public String getPrioridade() {

@@ -15,9 +15,9 @@ public class UserController {
     @PostMapping("/autenticar-usuario")
     public String autenticarUsuario(String username, String password) {
         if ("root".equals(username) && "root".equals(password)) {
-            return "redirect:/tela-usuario";
+            return "tela-usuario";
         } else {
-            return "redirect:/usuario";
+            return "login-usuario";
         }
     }
 
