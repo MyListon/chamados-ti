@@ -114,3 +114,9 @@
 #chk:checked ~ .switch .slider {
     transform: translateX(25px);
 }
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
