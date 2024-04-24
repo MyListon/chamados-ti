@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Controller
 public class CallController {
@@ -28,6 +30,7 @@ public class CallController {
                                @RequestParam String descricao,
                                @RequestParam String setor,
                                @RequestParam String prioridade) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         chamado.setDataInicio(LocalDateTime.now());
         chamado.setDescricao(descricao);
         chamado.setSetor(setor);
@@ -38,7 +41,7 @@ public class CallController {
 
     @GetMapping("/consultar-chamado")
     public String consultarChamado(Model model) {
-        Iterable<Chamado> listarChamado = repo.findAll();
+        List<Chamado> listarChamado = repo.findAll();
         model.addAttribute("chamados", listarChamado);
         return "consultar-chamado";
     }

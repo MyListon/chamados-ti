@@ -5,10 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -23,10 +19,9 @@ public class Chamado {
     private String setor;
     @Column(length = 50, nullable = false)
     private String prioridade;
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String dataInicio;
-
-    @Column(nullable = false)
+    @Column(length = 20, nullable = false)
     private boolean atendido;
 
     public Chamado() {
