@@ -1,11 +1,22 @@
 package com.soulcode.chamadosti.controllers;
 
+import com.soulcode.chamadosti.models.Chamado;
+import com.soulcode.chamadosti.models.Tecnico;
+import com.soulcode.chamadosti.repositories.CallRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class TechnicianController {
+
+    @Autowired
+    private CallRepository repo;
 
     @GetMapping("/login-tecnico")
     public String login() {
@@ -13,37 +24,24 @@ public class TechnicianController {
     }
 
     @PostMapping("/autenticar-tecnico")
-    public String autenticarTecnico(String username, String password) {
-        if ("root".equals(username) && "root".equals(password)) {
-            return "tela-tecnico";
+    public String autenticarTecnico(@RequestParam String usuarioTecnico, @RequestParam String senhaTecnico) {
+        Tecnico tecnicoAutenticacao = new Tecnico();
+        tecnicoAutenticacao.setLogin(usuarioTecnico);
+        tecnicoAutenticacao.setSenha(senhaTecnico);
+        if ("root".equals(tecnicoAutenticacao.getLogin()) && "root".equals(tecnicoAutenticacao.getSenha())) {
+            return "redirect:/tela-tecnico";
         } else {
             return "login-tecnico";
         }
     }
 
     @GetMapping("/tela-tecnico")
-    public String telaTecnico() {
+    public String telaTecnico(Model model) {
+        List<Chamado> chamadosAbertos = repo.findAllByAtendido(false);
+        List<Chamado> chamadosAtendidos = repo.findAllByAtendido(true);
+        model.addAttribute("chamadosAbertos", chamadosAbertos);
+        model.addAttribute("chamadosAtendidos", chamadosAtendidos);
         return "tela-tecnico";
     }
 
-    @GetMapping("/tela-chamado1")
-    public String atualizarChamado() {
-        return "tela-chamado1";
-    }
-    @GetMapping("/tela-chamado2")
-    public String atualizarChamado2() {
-        return "tela-chamado2";
-    }
-    @GetMapping("/tela-chamado3")
-    public String atualizarChamado3() {
-        return "tela-chamado1";
-    }
-    @GetMapping("/tela-chamado4")
-    public String atualizarChamado4() {
-        return "tela-chamado4";
-    }
-    @GetMapping("/tela-chamado5")
-    public String atualizarChamado5() {
-        return "tela-chamado5";
-    }
 }

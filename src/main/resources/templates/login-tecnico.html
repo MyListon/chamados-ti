@@ -2,17 +2,28 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Login do Técnico</title>
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection"/>
+    <link rel="stylesheet" href="materialize/css/style.css">
+    <title>Login do Tecnico</title>
 </head>
-<body>
-<h2>Login do Técnico</h2>
-<form action="/autenticar-tecnico" method="POST">
-    <label for="username">Usuário:</label><br>
-    <input type="text" id="username" name="username"><br>
-    <br>
-    <label for="password">Senha:</label><br>
-    <input type="password" id="password" name="password"><br><br>
-    <input type="submit" value="Entrar">
-</form>
+<body class="body-centered">
+<div class="container-login">
+    <div class="row">
+        <div class="col s12 m6 offset-s4">
+            <div class="card">
+                <div class="card-content">
+                    <h2 class="titulo-login">Login do Tecnico</h2>
+                    <form action="/autenticar-tecnico" method="POST">
+                        <label>Usuário:</label>
+                        <input type="text" id="usuarioTecnico" name="usuarioTecnico">
+                        <label>Senha:</label><br>
+                        <input type="password" id="senhaTecnico" name="senhaTecnico">
+                        <input type="submit" value="Entrar" class="waves-effect waves-grey btn btn-entrar">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -1,65 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Você está logado na Tela do Técnico</title>
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"
+          media="screen,projection"/>
+    <link rel="stylesheet" href="materialize/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Tela do Técnico</title>
 </head>
 <body>
+<div class="container-tela-usuario">
+    <div class="card-tela-usuario">
+        <h2 class="center-align titulo-login">Bem-vindo!</h2>
+        <h4>Chamados Abertos</h4>
+        <table id="chamadosAbertos" class="highlight centered responsive-table"
+               width="100%">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Setor</th>
+                <th>Descrição</th>
+                <th>Prioridade</th>
+                <th>Data de início</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="chamado:${chamadosAbertos}">
+                <td th:text="*{chamado.id}"></td>
+                <td th:text="*{chamado.setor}"></td>
+                <td th:text="*{chamado.descricao}"></td>
+                <td th:text="*{chamado.prioridade}"></td>
+                <td th:text="*{chamado.dataInicio}"></td>
+                <td th:text="*{chamado.atendido ? 'Atendido' : 'Não Atendido'}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <h4>Chamados Atendidos</h4>
+        <table id="chamadosAtendidos" class="highlight centered responsive-table"
+               width="100%">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Setor</th>
+                <th>Descrição</th>
+                <th>Prioridade</th>
+                <th>Data de início</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="chamado:${chamadosAtendidos}">
+                <td th:text="*{chamado.id}"></td>
+                <td th:text="*{chamado.setor}"></td>
+                <td th:text="*{chamado.descricao}"></td>
+                <td th:text="*{chamado.prioridade}"></td>
+                <td th:text="*{chamado.dataInicio}"></td>
+                <td th:text="*{chamado.atendido ? 'Atendido' : 'Não Atendido'}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="center-align">
+            <a class="waves-effect waves-light btn" href="/">Sair</a>
+        </div>
+    </div>
+</div>
 
-<h2>Bem-vindo!</h2>
+<script>
+    function toggleChamados(checkbox) {
+     var statusCell = checkbox.parentNode.previousElementSibling;
+     if (checkbox.checked) {
+         statusCell.textContent = 'Atendido';
+         statusCell.style.color = 'green';
+         statusCell.style.fontWeight = 'bold';
+     } else {
+         statusCell.textContent = 'Não Atendido';
+         statusCell.style.color = 'red';
+         statusCell.style.fontWeight = 'bold';
+     }
+ }
 
-<h3>Chamados</h3>
-<ul>
-    <li>
-        <strong>Usuário:</strong>root<br>
-        <strong>Setor:</strong>TI<br>
-        <strong>Descrição:</strong> Problema na rede<br>
-        <strong>Prioridade:</strong> Alta<br>
-        <strong>Data de Início:</strong> 2024-04-22<br>
-        <br>
-        <button><a href="/tela-chamado1">Abrir</a></button>
-    </li>
-    <br>
-    <li>
-        <strong>Usuário:</strong>root<br>
-        <strong>Setor:</strong>TI<br>
-        <strong>Descrição:</strong> Problema na máquina<br>
-        <strong>Prioridade:</strong> Alta<br>
-        <strong>Data de Início:</strong> 2024-04-22<br>
-        <br>
-        <button><a href="/tela-chamado2">Abrir</a></button>
-    </li>
-    <br>
-    <li>
-        <strong>Usuário:</strong>root<br>
-        <strong>Setor:</strong>TI<br>
-        <strong>Descrição:</strong> Problema impressora<br>
-        <strong>Prioridade:</strong> Média<br>
-        <strong>Data de Início:</strong> 2024-04-22<br>
-        <br>
-        <button><a href="/tela-chamado3">Abrir</a></button>
-    </li>
-    <br>
-    <li>
-        <strong>Usuário:</strong>root<br>
-        <strong>Setor:</strong>TI<br>
-        <strong>Descrição:</strong> Meu PDF não abre<br>
-        <strong>Prioridade:</strong> Baixa<br>
-        <strong>Data de Início:</strong> 2024-04-22<br>
-        <br>
-        <button><a href="/tela-chamado4">Abrir</a></button>
-    </li>
-    <br>
-    <li>
-        <strong>Usuário:</strong>root<br>
-        <strong>Setor:</strong>TI<br>
-        <strong>Descrição:</strong> Problema na rede<br>
-        <strong>Prioridade:</strong> Alta<br>
-        <strong>Data de Início:</strong> 2024-04-22<br>
-        <br>
-        <button><a href="/tela-chamado5">Abrir</a></button>
-    </li>
-</ul>
+</script>
 
 </body>
 </html>

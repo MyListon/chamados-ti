@@ -2,11 +2,31 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection"/>
+    <link rel="stylesheet" href="materialize/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Página Inicial</title>
 </head>
 <body>
-<h2>Bem-vindo ao Sistema de Chamados Técnicos</h2>
-<a href="/login-usuario">Entrar como Usuário</a><br>
-<a href="/login-tecnico">Entrar como Técnico</a>
+<div class="container container-centered">
+    <div class="row">
+        <div class="col s12 m8 offset-s4">
+            <div class="card custom-card" style="width: 650px;">
+                <span class="titulo">Sistema de Chamados Técnicos</span>
+                <div class="card-image">
+                    <img src="img/img-tela-inicial.gif">
+                </div>
+                <div class="card-action center-align">
+                    <a class="waves-effect waves-light btn btn-large custom-btn" href="/login-usuario">Entrar como
+                        Usuário</a>
+                    <a class="waves-effect waves-light btn btn-large custom-btn" href="/login-tecnico">Entrar como
+                        Técnico</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

@@ -1,24 +1,41 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Você esta logado na Tela do Usuário</title>
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection"/>
+    <link rel="stylesheet" href="materialize/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Tela do Usuário</title>
 </head>
 <body>
-<h2>Bem-vindo!</h2>
-
-<h3>Chamados Anteriores</h3>
-<ul>
-    <li>
-        <strong>Usuário:</strong>root<br>
-        <strong>Setor:</strong>TI<br>
-        <strong>Descrição:</strong> Problema na rede<br>
-        <strong>Prioridade:</strong> Alta<br>
-        <strong>Data de Início:</strong> 2024-04-22<br>
-    </li>
-</ul>
-
-<a href="/criar-chamado">Criar Novo Chamado</a><br>
-
+<div class="container-tela-usuario">
+    <div class="card-tela-usuario">
+        <h2 class="center-align titulo-login">Bem-vindo!</h2>
+        <table class="highlight centered responsive-table" width="100px">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Setor</th>
+                <th>Descrição</th>
+                <th>Prioridade</th>
+                <th>Data do início</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="chamado:${chamados}">
+                <td th:text="*{chamado.id}"></td>
+                <td th:text="*{chamado.setor}"></td>
+                <td th:text="*{chamado.descricao}"></td>
+                <td th:text="*{chamado.prioridade}"></td>
+                <td th:text="*{chamado.dataInicio}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="center-align">
+            <a class="waves-effect waves-light btn" href="/consultar-chamado">Abrir Chamado</a>
+            <a class="waves-effect waves-light btn" href="/">Sair</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
