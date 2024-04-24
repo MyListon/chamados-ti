@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,900;1,100;1,300;1,400;1,900&display=swap');
+*{
+   margin:0;
+   padding:0;
+   font-family: 'roboto', sans-serif;
+}
+
+.btn, .btn-large, .btn-small :hover{
+	background-color: #004d40;
+	margin-left: auto;
+	margin-right: auto;
+	display:block;
+	width:25%;
+	margin-top: 40px;
+	}
+
+.titulo{
+	text-align:center;
+	font-size: 40px;
+	display: block;
+    margin: 10px auto;
+}
+
+.container-login {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.card {
+    width: 350px;
+}
+
+.container-tela-usuario {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  }
+
+.card-tela-usuario {
+    width: 50%;
+    padding: 20px;
+    background:#e0f2f1;
+   }
+
+.btn-entrar {
+    width: 300px;
+}
+
+.titulo-login {
+    font-size: 30px;
+    text-align:center;
+}
+
+.center-align {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.center-align a {
+    margin: 0 10px;
+}
+
+.custom-btn {
+   width: 400px;
+   font-size: 12px;
+        }
+
+.container-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.custom-card {
+    width: 650px;
+}
+
+#chk {
+    display: none;
+}
+
+.switch {
+    position: relative;
+    background-color: #777;
+    width: 50px;
+    height: 20px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+    background-color: #808080;
+}
+
+.slider {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    transition: all .5s ease-in-out;
+}
+
+#chk:checked ~ .switch {
+    background-color: green;
+}
+
+#chk:checked ~ .switch .slider {
+    transform: translateX(25px);
+}

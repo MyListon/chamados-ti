@@ -1,27 +1,61 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"
+          media="screen,projection"/>
+    <link rel="stylesheet" href="materialize/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Cadastro de Chamado</title>
 </head>
 <body>
-<h2>Cadastro de Chamado</h2>
-<form action="/salvar-chamado" method="POST">
-    <label for="titulo">Título:</label><br>
-    <input type="text" id="titulo" name="titulo"><br>
-    <br>
-    <label for="setor">Setor: </label><br>
-    <input type="text" id="setor" name="setor"><br>
-    <label for="descricao">Descrição:</label><br>
-    <textarea id="descricao" name="descricao"></textarea><br>
-    <label for="prioridade">Prioridade: </label><br>
-    <input type="text" id="prioridade" name="prioridade"><br>
-    <label for="dataInicio">Data de Início: </label><br>
-    <input type="text" id="dataInicio" name="dataInicio"><br>
-    <br>
-    <input type="submit" value="Cadastrar">
-</form>
 <br>
-<a href="tela-usuario">Voltar para Tela do Usuário</a>
+
+
+<div class="container-login">
+    <div class="row">
+        <div class="col s12">
+            <h1 class="titulo">Cadastro de Chamado</h1>
+            <form th:action="@{/criar-chamado}" method="post">
+
+                <label>Setor</label>
+                <input class="input-field" id="idSetor" type="text"
+                       placeholder="Informe o setor" name="setor" required>
+
+                <label>Descrição</label>
+                <textarea id="idDescricao" type="text"
+                          placeholder="Informe a descrição"
+                          class="materialize-textarea" name="descricao"
+                          required></textarea>
+
+                <label>Prioridade</label>
+                <div id="idPrioridade" class="input-field col s12">
+                    <select name="prioridade" required>
+                        <option value="" disabled selected>Selecione uma prioridade
+                        </option>
+                        <option value="alta">Alta</option>
+                        <option value="media">Media</option>
+                        <option value="baixa">Baixa</option>
+                    </select>
+                </div>
+
+            </form>
+        </div>
+        <div class="col s12">
+            <button class="waves-effect waves-grey btn">Salvar</button>
+            <button class="waves-effect waves-light btn"
+                    onclick="window.history.back();">
+                Voltar
+            </button>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+    });
+</script>
 </body>
 </html>

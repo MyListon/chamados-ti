@@ -7,24 +7,31 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Chamado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length=50, nullable=false)
+    @Column(length = 50, nullable = false)
     private String descricao;
-    @Column(length=50, nullable=false)
+    @Column(length = 50, nullable = false)
     private String setor;
-    @Column(length=50, nullable=false)
+    @Column(length = 50, nullable = false)
     private String prioridade;
-    @Column(length=50, nullable=false)
-    private LocalDateTime dataInicio;
+    @Column(length = 50, nullable = false)
+    private String dataInicio;
+
+    @Column(nullable = false)
+    private boolean atendido;
 
     public Chamado() {
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        this.dataInicio = LocalDateTime.now().format(formatter);
     }
 
     public Long getId() {
@@ -59,11 +66,20 @@ public class Chamado {
         this.prioridade = prioridade;
     }
 
-    public LocalDateTime getDataInicio() {
+    public boolean isAtendido() {
+        return atendido;
+    }
+
+    public void setAtendido(boolean atendido) {
+        this.atendido = atendido;
+    }
+
+    public String getDataInicio() {
         return dataInicio;
     }
 
     public void setDataInicio(LocalDateTime dataInicio) {
-        this.dataInicio = dataInicio;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        this.dataInicio = dataInicio.format(formatter);
     }
 }
