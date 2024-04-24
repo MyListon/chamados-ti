@@ -23,6 +23,7 @@
                 <th>Prioridade</th>
                 <th>Data de início</th>
                 <th>Status</th>
+                <th>Ativo</th>
             </tr>
             </thead>
             <tbody>
@@ -33,9 +34,17 @@
                 <td th:text="*{chamado.prioridade}"></td>
                 <td th:text="*{chamado.dataInicio}"></td>
                 <td th:text="*{chamado.atendido ? 'Atendido' : 'Não Atendido'}"></td>
+                <td>
+                    <input type="checkbox" id="chk" onchange="toggleChamados(this)"/>
+                    <label for="chk" class="switch">
+                        <span class="slider"></span>
+                    </label>
+                </td>
+
             </tr>
             </tbody>
         </table>
+
         <h4>Chamados Atendidos</h4>
         <table id="chamadosAtendidos" class="highlight centered responsive-table"
                width="100%">
@@ -56,7 +65,6 @@
                 <td th:text="*{chamado.descricao}"></td>
                 <td th:text="*{chamado.prioridade}"></td>
                 <td th:text="*{chamado.dataInicio}"></td>
-                <td th:text="*{chamado.atendido ? 'Atendido' : 'Não Atendido'}"></td>
             </tr>
             </tbody>
         </table>
@@ -68,19 +76,27 @@
 
 <script>
     function toggleChamados(checkbox) {
-     var statusCell = checkbox.parentNode.previousElementSibling;
-     if (checkbox.checked) {
-         statusCell.textContent = 'Atendido';
-         statusCell.style.color = 'green';
-         statusCell.style.fontWeight = 'bold';
-     } else {
-         statusCell.textContent = 'Não Atendido';
-         statusCell.style.color = 'red';
-         statusCell.style.fontWeight = 'bold';
-     }
- }
+        var row = checkbox.parentNode.parentNode;
+        var statusCell = row.cells[row.cells.length - 2];
+        var checkboxCell = row.cells[row.cells.length - 1];
 
+        if (checkbox.checked) {
+            statusCell.textContent = 'Atendido';
+            statusCell.style.color = 'green';
+            statusCell.style.fontWeight = 'bold';
+
+            checkboxCell.innerHTML = '';
+
+            document.getElementById('chamadosAtendidos').getElementsByTagName('tbody')[0].appendChild(row);
+        } else {
+            statusCell.textContent = 'Não Atendido';
+            statusCell.style.color = 'red';
+            statusCell.style.fontWeight = 'bold';
+
+            document.getElementById('chamadosAbertos').getElementsByTagName('tbody')[0].appendChild(row);
+        }
+
+    }
 </script>
-
 </body>
 </html>
