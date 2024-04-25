@@ -36,9 +36,8 @@
                 <td th:style="${!chamado.atendido ? 'color: red' : ''}"> Não Atendido
                 </td>
                 <td>
-                    <button class="waves-light btn rounded" onclick="toggleChamados(this)"
+                    <button class="waves-light" onclick="toggleChamados(this)"
                             th:attr="data-id=${chamado.id}">        &#10003;
-
                     </button>
                 </td>
 
@@ -84,9 +83,10 @@
             method: 'POST'
         })
         .then(() => {
-            location.reload();
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
         });
-
     }
 </script>
 </body>
