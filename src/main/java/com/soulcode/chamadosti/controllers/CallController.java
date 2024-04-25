@@ -5,10 +5,7 @@ import com.soulcode.chamadosti.repositories.CallRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -44,5 +41,15 @@ public class CallController {
         List<Chamado> listarChamado = repo.findAll();
         model.addAttribute("chamados", listarChamado);
         return "consultar-chamado";
+    }
+
+    @PostMapping("/alterar-status")
+    @ResponseBody
+    public void alterarStatus(@RequestParam Long id) {
+        Chamado chamado = repo.findById(id).orElse(null);
+        if (chamado != null) {
+            chamado.setAtendido(!chamado.isAtendido());
+            repo.save(chamado);
+        }
     }
 }
